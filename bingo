@@ -1,0 +1,30 @@
+    function cadastrarCartela() {
+        let codigoCartela = document.getElementById("CodCartela").value;
+        let numerosCartela = document.getElementById("NumerosCartela").value;
+
+            if (codigoCartela.trim() === "" || numerosCartela.trim() === "") {
+            alert("Por favor, preencha todos os campos.");
+            return;
+        }
+    
+        let numerosArray = numerosCartela.split(",").map(num => parseInt(num.trim()));
+    
+        if (numerosArray.length !== 24) {
+            alert("A cartela deve conter exatamente 24 números.");
+            return;
+        }
+    
+        for (let numero of numerosArray) {
+            if (numero < 1 || numero > 99) {
+                alert("Os números da cartela devem estar entre 1 e 99.");
+                return;
+            }
+        }
+    
+        listaCartelas.push([codigoCartela, numerosArray, 0]);
+    
+        document.getElementById("CodCartela").value = "";
+        document.getElementById("NumerosCartela").value = "";
+    
+        alert("Cartela cadastrada com sucesso!");
+    }
